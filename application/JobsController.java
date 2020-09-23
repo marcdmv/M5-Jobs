@@ -36,26 +36,35 @@ public class JobsController extends PaymentFactory{
 		repository.addVolunteer(volunteer);
 	}
 
-	// Llamamaos al método que paga todos los empleados de la clase EmployeeRepository
-	public void payAllEmployees() {
+	// Llamada al método que paga todos los empleados de la clase EmployeeRepository e imprimimos por consola el nombre, el id
+	// y lo que se le ha pagado al empleado.
+	public void payAllEmployees() throws Exception{
 		for(AbsStaffMember asm : repository.getAllEmployees()) {
+			if (asm.name.equals(""))
+				throw new Exception();
 			System.out.println(asm.name.split(" ")[0] + ", que es " + asm.name.split(" ")[1] + " y tiene como id el número "
 					+ asm.id + " ha recibido su nómina de ");
 			asm.pay();
 		}
 	}
 
-	public String getAllEmployees() {
+	// Llamada al método de la clase EmployeeRepository que devuelve el nombre de todos los empleados
+	public String getAllEmployees() throws Exception{
 		String allEmployees = new String();
 		for (AbsStaffMember asm : repository.getAllEmployees()) {
+			if (asm.name.equals(""))
+				throw new Exception();
 			allEmployees = allEmployees + asm.name.split(" ")[0] + " ";
 		}
 		return allEmployees;
 	}
 
-	public String getAllVolunteers() {
+	// Llamada al método de la clase EmployeeRepository que devuelve el nombre de todos los voluntarios
+	public String getAllVolunteers() throws Exception{
 		String allVolunteers = new String();
 		for (AbsStaffMember asm : repository.getAllVolunteers()) {
+			if (asm.name.equals(""))
+				throw new Exception();
 			allVolunteers = allVolunteers + asm.name.split(" ")[0] + " ";
 		}
 		return allVolunteers;
